@@ -41,7 +41,7 @@ public static class DapperSqlGenerator
     /// <returns></returns>
     public static string Insert(Type objType, string table, string idProperty, Dictionary<string, string> columnMappings)
     {
-        var dictColumns = DictColumns(objType, idProperty, columnMappings);
+        var dictColumns = DictColumns(objType, columnMappings);
         var sqlCols = string.Join(",", dictColumns.Keys.Where(f => f != idProperty));
         var sqlValues = "@" + string.Join(",@", dictColumns.Values.Where(f => f != idProperty));
         return string.Format("insert into {0} ({1}) values ({2});SELECT CAST(SCOPE_IDENTITY() as int)", table, sqlCols, sqlValues);
@@ -56,7 +56,7 @@ public static class DapperSqlGenerator
     /// <returns></returns>
     public static string Update(Type objType, string table, string idProperty, Dictionary<string, string> columnMappings)
     {
-        var dictColumns = DictColumns(objType, idProperty, columnMappings);
+        var dictColumns = DictColumns(objType, columnMappings);
         var sqlCols = new List<string>();
         var where = "";
         foreach (var col in dictColumns)
@@ -89,7 +89,7 @@ public static class DapperSqlGenerator
     /// <returns></returns>
     public static string SelectById(int id, Type objType, string table, string idProperty, Dictionary<string, string> columnMappings)
     {
-        var dictColumns = DictColumns(objType, idProperty, columnMappings);
+        var dictColumns = DictColumns(objType, columnMappings);
         var sqlCols = string.Join(",", dictColumns.Keys);
         //aggiungo i valori del mapping
         foreach (var columnMapping in columnMappings)
