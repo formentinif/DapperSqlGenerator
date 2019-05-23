@@ -103,16 +103,14 @@ public static class DapperSqlGenerator
     /// This function generates a dictionary that maps the database fields the the POCO properties 
     /// </summary>
     /// <param name="objType">Domain Type</param>
-    /// <param name="idProperty">The name of the Primary Key</param>
     /// <param name="columnMappings">Key(Property Name)-Value(Field Name) pairs of the database fields that have a different property name.</param>
     /// <returns></returns>
-    private static Dictionary<string, string> DictColumns(Type objType, string idProperty, Dictionary<string, string> columnMappings)
+    private static Dictionary<string, string> DictColumns(Type objType, Dictionary<string, string> columnMappings)
     {
         var cols = (from propertyInfo in objType.GetProperties()
                     where propertyInfo.CanRead &&
                             (propertyInfo.PropertyType == typeof(string) ||
-                            !typeof(IEnumerable).IsAssignableFrom(propertyInfo.PropertyType)) &&
-                            !propertyInfo.Name.Equals(idProperty)
+                            !typeof(IEnumerable).IsAssignableFrom(propertyInfo.PropertyType))
                     select propertyInfo.Name).ToList();
         var dictColumns = new Dictionary<string, string>();
         foreach (var col in cols)
