@@ -1,5 +1,5 @@
 # DapperSqlGenerator
-A simple C# class that generate CRUD Sql Code for Dapper
+A simple C# class that generates CRUD Sql Code for Dapper
 
 ## License
 
