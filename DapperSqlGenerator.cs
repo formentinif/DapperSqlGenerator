@@ -43,7 +43,7 @@ public static class DapperSqlGenerator
     {
         var dictColumns = DictColumns(objType, columnMappings);
         var sqlCols = string.Join(",", dictColumns.Keys.Where(f => f != idProperty));
-        var sqlValues = "@" + string.Join(",@", dictColumns.Values.Where(f => f != idProperty));
+         var sqlValues = "@" + string.Join(",@", dictColumns.Where(f => f.Key != idProperty).Select(f=>f.Value));
         return string.Format("insert into {0} ({1}) values ({2});SELECT CAST(SCOPE_IDENTITY() as int)", table, sqlCols, sqlValues);
     }
     /// <summary>
