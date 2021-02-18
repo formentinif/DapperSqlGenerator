@@ -32,7 +32,7 @@ using System.Linq;
 public static class DapperSqlGenerator
 {
 
-//Modifica paolo
+//Modifica Filippo
 
     /// <summary>
     /// Generates INSERT STATEMENT
