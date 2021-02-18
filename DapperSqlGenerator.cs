@@ -31,9 +31,6 @@ using System.Linq;
 /// </summary>
 public static class DapperSqlGenerator
 {
-
-//Modifica Filippo
-
     /// <summary>
     /// Generates INSERT STATEMENT
     /// </summary>
